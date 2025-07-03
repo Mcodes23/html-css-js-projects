@@ -1,2 +1,2 @@
-# html-css-js-projects
-A collection of all my basic html,css and js projects
+# HTML, CSS and JS projeccts
+These are my projects built by vanilla htm,css and js
