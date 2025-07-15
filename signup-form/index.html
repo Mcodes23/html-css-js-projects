@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up Form</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div class="background-left">
+      <div class="transparent-bar">
+        <img src="images/odin-lined.png" alt="odin image" />
+        <h1 class="background-header">ODIN</h1>
+      </div>
+      <p class="photo-credit">
+        Photo by
+        <a
+          href="https://unsplash.com/@haliewestphoto?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+          target="_blank"
+          >Halie West</a
+        >
+        on
+        <a
+          href="https://unsplash.com/photos/green-leaf-plant-in-close-up-photography-25xggax4bSA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash"
+          target="_blank"
+          >Unsplash</a
+        >
+      </p>
+    </div>
+    <div class="main-container">
+      <form action="example.com/path" method="post">
+        <div class="main-text-section">
+          <h2 class="intrigue-text top-text">
+            This is not a real online service! You know you need something like
+            this in your life to help you realize your deepest dreams.<br />Sign
+            up <i>now</i> to get started.
+          </h2>
+          <h2 class="intrigue-text">You <i>know</i> you want to.</h2>
+        </div>
+
+        <div class="questions">
+          <h1 class="form-heading">Let's do this!</h1>
+          <div class="question-columns">
+            <div class="question-column">
+              <label for="first_name"
+                >FIRST NAME
+                <input
+                  type="text"
+                  id="first_name"
+                  name="first_name"
+                  placeholder="John"
+                />
+              </label>
+
+              <label for="email"
+                >EMAIL
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="johndoe@email.com"
+                />
+              </label>
+              <label for="user_password"
+                >PASSWORD
+                <input
+                  type="password"
+                  id="user_password"
+                  name="user_password"
+                  placeholder="*********"
+                  minlength="7"
+                  maxlength="20"
+                />
+              </label>
+            </div>
+            <div class="question-column">
+              <label for="last_name"
+                >LAST NAME
+                <input
+                  type="text"
+                  id="last_name"
+                  name="last_name"
+                  placeholder="Doe"
+                />
+              </label>
+              <label for="phone_number"
+                >PHONE NUMBER
+                <input
+                  type="tel"
+                  id="phone_number"
+                  name="phone_number"
+                  placeholder="415-867-5309"
+                />
+              </label>
+              <label for="confirm_password"
+                >CONFIRM PASSWORD
+                <input
+                  type="password"
+                  id="confirm_password"
+                  name="confirm_password"
+                  placeholder="*********"
+                  minlength="7"
+                  maxlength="20"
+                />
+              </label>
+            </div>
+          </div>
+        </div>
+        <button type="submit" class="myBtn">Create Account</button>
+        <p class="login">Already have an account? <a href="">Log in</a></p>
+      </form>
+    </div>
+  </body>
+</html>
