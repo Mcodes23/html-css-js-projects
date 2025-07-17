@@ -1,0 +1,81 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto:100,200,300,regular,500,600,700,800,900,100italic,200italic,300italic,italic,500italic,600italic,700italic,800italic,900italic);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  grid-template-columns: 350px 1fr;
+  grid-template-rows: auto 1fr;
+  height: 100vh;
+  font-size: 16px;
+}
+.icon {
+  height: 80px;
+  filter: brightness(0) invert(1);
+}
+/* Aside */
+aside {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  background-color: #2196f3;
+  color: #fff;
+  padding-left: 1rem;
+}
+
+/* Aside Header */
+.aside-header {
+  display: flex;
+  gap: 0.5rem;
+  padding-top: 1rem;
+}
+.aside-header h1 {
+  padding-top: 0.8rem;
+  font-size: 1.7rem;
+  font-weight: 500;
+}
+.aside-header img {
+  height: 3.5rem;
+}
+
+/* Aside Navigation */
+.list-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  list-style: none;
+}
+.list-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0.6rem 0px;
+  font-weight: 500;
+  font-size: 1.3rem;
+}
+.list-item img {
+  height: 28px;
+  width: 28px;
+}
+main {
+  grid-area: main;
+}
+header {
+  grid-area: header;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 0.5rem;
+  padding: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+.box {
+  border: 1px solid black;
+}
