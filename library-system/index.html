@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>My Library</h1>
+      <div class="myBtns">
+        <button id="addBtn" role="button">Add Book</button>
+        <button id="deleteBtn" role="button">Delete Book</button>
+      </div>
+    </header>
+    <div id="addBookModal" class="modal">
+      <div class="modal-content">
+        <span class="closeBtn">&times;</span>
+        <h2>Add New Book</h2>
+        <form id="addBookForm">
+          <input type="text" placeholder="Title" id="bookTitle" required />
+          <input type="text" placeholder="Author" id="bookAuthor" required />
+          <input type="number" placeholder="Price" id="bookPrice" required />
+          <input type="text" placeholder="Genre" id="bookGenre" required />
+          <input
+            type="text"
+            placeholder="Description"
+            id="bookDescription"
+            required
+          />
+          <input type="url" placeholder="Image URL" id="bookImage" required />
+          <button type="submit">Add Book</button>
+        </form>
+      </div>
+    </div>
+    <div class="books-container"></div>
+    <script src="js/script.js"></script>
+  </body>
+</html>
