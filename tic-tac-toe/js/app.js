@@ -164,14 +164,17 @@ const DisplayController = (function () {
 
   function restartGame() {
     setInputsDisabled(false);
+    GameBoard.resetBoard();
+    gameStatus.textContent = "The Game was restarted";
     resultElement.textContent = "";
     turnIndicator.textContent = "";
     gameboard.innerHTML = "";
+    renderBoard();
   }
 
   startGameBtn.addEventListener("click", startGame);
   restartGameBtn.addEventListener("click", restartGame);
-  // renderBoard();
+  renderBoard();
   return {
     renderBoard,
     renderTurn,
