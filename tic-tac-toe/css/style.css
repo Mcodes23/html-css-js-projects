@@ -1,0 +1,103 @@
+body {
+  font-family: "Segoe UI", sans-serif;
+  text-align: center;
+  background-color: #1f1f1f;
+  color: #f9f9f9;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+#player-inputs {
+  margin-bottom: 20px;
+}
+
+#player-inputs input {
+  padding: 8px;
+  margin: 5px;
+  width: 180px;
+  font-size: 1rem;
+}
+
+#start-btn {
+  padding: 8px 16px;
+  font-size: 1rem;
+  margin-left: 10px;
+  background-color: #32cd32;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#start-btn:hover {
+  background-color: #28a428;
+}
+
+#game-status {
+  margin: 10px 0 20px;
+  font-size: 1.2rem;
+}
+
+#game-board {
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 100px;
+  height: 100px;
+  background-color: #333;
+  border: 2px solid #444;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.cell:hover {
+  background-color: #444;
+}
+
+.cell.X {
+  color: #00bfff;
+}
+
+.cell.O {
+  color: #ff4c4c;
+}
+
+#restart-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  background-color: #00bfff;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#restart-btn:hover {
+  background-color: #008ccc;
+}
+.turn-indicator {
+  margin-top: 10px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #1976d2;
+}
+
+.result {
+  margin-top: 20px;
+  font-size: 22px;
+  font-weight: bold;
+  color: greenyellow;
+  letter-spacing: 1px;
+}
