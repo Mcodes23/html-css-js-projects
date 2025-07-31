@@ -86,6 +86,14 @@ const GameController = (function () {
 // GameController.playRound(2);
 // GameController.playRound(8);
 // GameController.start();
+const SoundManager = {
+  click: new Howl({ src: ["sounds/click.mp3"], volume: 1.0 }),
+  start: new Howl({ src: ["sounds/start.mp3"], volume: 1.0 }),
+  win: new Howl({ src: ["sounds/win.mp3"], volume: 1.0 }),
+  tie: new Howl({ src: ["sounds/tie.mp3"], volume: 1.0 }),
+  reset: new Howl({ src: ["sounds/reset.mp3"], volume: 1.0 }),
+};
+
 const DisplayController = (function () {
   const firstPlayerName = document.getElementById("player1-name");
   const secondPlayerName = document.getElementById("player2-name");
@@ -125,9 +133,11 @@ const DisplayController = (function () {
         winner === "X"
           ? firstPlayerName.value || "Player 1"
           : secondPlayerName.value || "Player 2";
+      SoundManager.win.play();
       gameStatus.textContent = "The Game is over...";
       resultElement.textContent = `${name}(${winner}) is the winner 🎉`;
     } else if (GameBoard.checkTie()) {
+      SoundManager.tie.play();
       gameStatus.textContent = "The Game is over...";
       resultElement.textContent = "It's a tie";
     } else {
@@ -140,6 +150,12 @@ const DisplayController = (function () {
     if (GameBoard.getBoard()[index] !== "" || GameController.isGameOver()) {
       return;
     }
+    try {
+      SoundManager.click.play();
+    } catch (e) {
+      console.log("Sound play error:", e);
+    }
+
     GameController.playRound(index);
     renderBoard();
     renderResult();
@@ -154,6 +170,7 @@ const DisplayController = (function () {
   function startGame() {
     const name1 = firstPlayerName.value;
     const name2 = secondPlayerName.value;
+    SoundManager.start.play();
     gameStatus.textContent = "The Game has started...";
     GameController.start(name1, name2);
     renderBoard();
@@ -164,6 +181,7 @@ const DisplayController = (function () {
 
   function restartGame() {
     setInputsDisabled(false);
+    SoundManager.reset.play();
     GameBoard.resetBoard();
     gameStatus.textContent = "The Game was restarted";
     resultElement.textContent = "";
