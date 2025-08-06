@@ -1,6 +1,6 @@
 const GameBoard = (function () {
-  const board = ["", "", "", "", "", "", "", "", ""];
-  const getBoard = () => board;
+  const board = Array(9).fill("");
+  const getBoard = () => [...board];
   const placeMarker = (index, mark) => {
     if (board[index] === "") {
       board[index] = mark;
@@ -8,11 +8,7 @@ const GameBoard = (function () {
     }
     return false;
   };
-  const resetBoard = () => {
-    for (let i = 0; i < board.length; i++) {
-      board[i] = "";
-    }
-  };
+  const resetBoard = () => board.fill("");
   const checkWin = () => {
     const winPatterns = [
       [0, 1, 2],
@@ -38,54 +34,55 @@ const GameBoard = (function () {
   return { getBoard, placeMarker, resetBoard, checkWin, checkTie };
 })();
 
-function Player(name, mark) {
-  return { name, mark };
-}
+const Player = (name, mark, isComputer = false) => ({ name, mark, isComputer });
 
 const GameController = (function () {
-  let player1, player2, currentPlayer, gameOver;
-  const start = (name1 = "Player 1", name2 = "Player 2") => {
+  let player1,
+    player2,
+    currentPlayer,
+    gameOver,
+    mode = "pvp";
+
+  const start = (
+    name1 = "Player 1",
+    name2 = "Player 2",
+    selectedMode = "pvp"
+  ) => {
+    mode = selectedMode;
     player1 = Player(name1, "X");
-    player2 = Player(name2, "O");
+    player2 = Player(
+      name2 || (mode === "pvc" ? "Computer" : "Player 2"),
+      "O",
+      mode === "pvc"
+    );
     currentPlayer = player1;
     gameOver = false;
     GameBoard.resetBoard();
   };
+
   const playRound = (index) => {
-    if (gameOver) {
-      // console.log("The game has already ended please restart");
-      return;
+    if (gameOver || !GameBoard.placeMarker(index, currentPlayer.mark)) return;
+
+    const winCheck = GameBoard.checkWin();
+    if (winCheck) {
+      gameOver = true;
+      return { type: "win", player: currentPlayer, cells: winCheck.cells };
     }
-    if (GameBoard.placeMarker(index, currentPlayer.mark)) {
-      const winner = GameBoard.checkWin();
-      if (winner) {
-        gameOver = true;
-        // console.log(`${currentPlayer.name} wins!`);
-        return;
-      }
-      if (GameBoard.checkTie()) {
-        gameOver = true;
-        // console.log("It's a tie!");
-        return;
-      }
-      currentPlayer = currentPlayer === player1 ? player2 : player1;
-    } else {
-      // console.log("Invalid move. Try again.");
+    if (GameBoard.checkTie()) {
+      gameOver = true;
+      return { type: "tie" };
     }
+
+    currentPlayer = currentPlayer === player1 ? player2 : player1;
+    return { type: "continue" };
   };
   const getCurrentPlayer = () => currentPlayer;
   const isGameOver = () => gameOver;
+  const getMode = () => mode;
 
-  return { start, playRound, getCurrentPlayer, isGameOver };
+  return { start, playRound, getCurrentPlayer, isGameOver, getMode };
 })();
 
-// GameController.start("Codekage", "Opponent");
-// GameController.playRound(0);
-// GameController.playRound(1);
-// GameController.playRound(4);
-// GameController.playRound(2);
-// GameController.playRound(8);
-// GameController.start();
 const SoundManager = {
   click: new Howl({ src: ["sounds/click.mp3"], volume: 1.0 }),
   start: new Howl({ src: ["sounds/start.mp3"], volume: 1.0 }),
@@ -95,14 +92,22 @@ const SoundManager = {
 };
 
 const DisplayController = (function () {
+  const playerVsPlayer = document.getElementById("player-against-player-btn");
+  const playerVsComputer = document.getElementById(
+    "player-against-computer-btn"
+  );
   const firstPlayerName = document.getElementById("player1-name");
   const secondPlayerName = document.getElementById("player2-name");
   const startGameBtn = document.getElementById("start-btn");
+  const playAgainBtn = document.getElementById("replay-btn");
   const restartGameBtn = document.getElementById("restart-btn");
   const gameStatus = document.getElementById("game-status");
   const gameboard = document.getElementById("game-board");
   const resultElement = document.getElementById("result");
   const turnIndicator = document.getElementById("turn-indicator");
+  const playerInput = document.getElementById("player-inputs");
+
+  let selectedMode = "pvp";
 
   function renderBoard() {
     const board = GameBoard.getBoard();
@@ -126,24 +131,18 @@ const DisplayController = (function () {
     turnIndicator.textContent = `${player.name}(${player.mark}) is playing.`;
   }
 
-  function renderResult() {
-    const winner = GameBoard.checkWin();
-    if (winner) {
-      const name =
-        winner === "X"
-          ? firstPlayerName.value || "Player 1"
-          : secondPlayerName.value || "Player 2";
+  const renderResult = (status) => {
+    if (!status) return;
+    if (status.type === "win") {
       SoundManager.win.play();
       gameStatus.textContent = "The Game is over...";
-      resultElement.textContent = `${name}(${winner}) is the winner 🎉`;
-    } else if (GameBoard.checkTie()) {
+      resultElement.textContent = `${status.player.name} (${status.player.mark}) wins 🎉`;
+    } else if (status.type === "tie") {
       SoundManager.tie.play();
       gameStatus.textContent = "The Game is over...";
-      resultElement.textContent = "It's a tie";
-    } else {
-      resultElement.textContent = "";
+      resultElement.textContent = "It's a tie!";
     }
-  }
+  };
 
   function handleCellClick(e) {
     const index = Number(e.target.dataset.index);
@@ -155,50 +154,94 @@ const DisplayController = (function () {
     } catch (e) {
       console.log("Sound play error:", e);
     }
-
-    GameController.playRound(index);
+    const result = GameController.playRound(index);
     renderBoard();
-    renderResult();
     renderTurn();
+    renderResult(result);
+
+    if (
+      result?.type === "continue" &&
+      GameController.getCurrentPlayer().isComputer
+    ) {
+      setTimeout(computerMove, 400);
+    }
   }
 
-  function setInputsDisabled(disabled) {
-    firstPlayerName.disabled = disabled;
-    secondPlayerName.disabled = disabled;
-  }
+  const computerMove = () => {
+    const board = GameBoard.getBoard();
+    const emptyIndices = board
+      .map((v, i) => (v === "" ? i : null))
+      .filter((i) => i !== null);
+    const randomIndex =
+      emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
 
-  function startGame() {
-    const name1 = firstPlayerName.value;
-    const name2 = secondPlayerName.value;
-    SoundManager.start.play();
-    gameStatus.textContent = "The Game has started...";
-    GameController.start(name1, name2);
+    SoundManager.click.play();
+    const result = GameController.playRound(randomIndex);
     renderBoard();
-    renderResult();
+    renderTurn();
+    renderResult(result);
+  };
+
+  const setInputsDisabled = (disabled) => {
+    firstPlayerName.disabled = disabled;
+    secondPlayerName.disabled = disabled || selectedMode === "pvc";
+  };
+  const startGame = () => {
+    SoundManager.start.play();
+    const name1 = firstPlayerName.value || "Player 1";
+    const name2 =
+      selectedMode === "pvc"
+        ? "Computer"
+        : secondPlayerName.value || "Player 2";
+    GameController.start(name1, name2, selectedMode);
+
+    gameStatus.textContent = "The Game has started...";
+    renderBoard();
     renderTurn();
     setInputsDisabled(true);
-  }
+    resultElement.textContent = "";
+  };
+
+  const playAgain = () => {
+    SoundManager.reset.play();
+    GameBoard.resetBoard();
+    gameStatus.textContent = "Play Again!";
+    renderBoard();
+    renderTurn();
+    resultElement.textContent = "";
+  };
 
   function restartGame() {
     setInputsDisabled(false);
-    SoundManager.reset.play();
+    try {
+      SoundManager.reset.play();
+    } catch (e) {
+      console.log("Sound play error:", e);
+    }
     GameBoard.resetBoard();
+    playerInput.style.display = "none";
+    firstPlayerName.value = "";
+    secondPlayerName.value = "";
     gameStatus.textContent = "The Game was restarted";
     resultElement.textContent = "";
     turnIndicator.textContent = "";
     gameboard.innerHTML = "";
     renderBoard();
   }
+  playerVsPlayer.addEventListener("click", () => {
+    selectedMode = "pvp";
+    playerInput.style.display = "block";
+    playerInput.style.paddingTop = 20 + "px";
+  });
+  playerVsComputer.addEventListener("click", () => {
+    selectedMode = "pvc";
+    playerInput.style.display = "block";
+    secondPlayerName.value = "Computer";
+  });
 
   startGameBtn.addEventListener("click", startGame);
+  playAgainBtn.addEventListener("click", playAgain);
   restartGameBtn.addEventListener("click", restartGame);
+
   renderBoard();
-  return {
-    renderBoard,
-    renderTurn,
-    renderResult,
-    handleCellClick,
-    startGame,
-    restartGame,
-  };
 })();
