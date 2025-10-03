@@ -26,7 +26,7 @@ challenge.
 
 ### live Demo
 
-[Link]
+https://mcodes23.github.io/html-css-js-projects/qr-code-component/
 
 ### What I Learned
 
