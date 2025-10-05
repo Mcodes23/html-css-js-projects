@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --Blue-100: hsl(225, 100%, 94%);
+  --Blue-700: hsl(245, 75%, 52%);
+  --Blue-50: hsl(225, 100%, 98%);
+  --Gray-600: hsl(224, 23%, 55%);
+  --Blue-950: hsl(223, 47%, 23%);
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: url(../assets/pattern-background-mobile.svg) no-repeat top center;
+  background-size: 100% 189%;
+  font-family: "Red Hat Display", sans-serif;
+  font-size: 16px;
+  padding: 2rem 0px;
+}
+
+.container {
+  background: var(--Blue-50);
+  max-width: 375px;
+  margin: 0 auto;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.container img {
+  max-width: 100%;
+  display: block;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.content-text {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.content-text h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--Blue-950);
+}
+
+.content-text p {
+  color: var(--Gray-600);
+  font-weight: 700;
+  opacity: 0.7;
+  padding: 0px 1rem;
+  line-height: 2rem;
+}
+
+.pricing {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: hsla(225, 100%, 94%, 0.4);
+  padding: 1rem;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.pricing-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.pricing-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.pricing-text h4 {
+  font-weight: 900;
+  color: var(--Blue-950);
+}
+
+.pricing p {
+  color: var(--Gray-600);
+  font-weight: 700;
+  font-size: 1rem;
+  opacity: 0.7;
+}
+
+.subscription-option a {
+  opacity: 1;
+}
+
+.subscription-option a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+button {
+  font-weight: 700;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  color: var(--Blue-50);
+  cursor: pointer;
+  background: var(--Blue-700);
+  box-shadow: 0 8px 32px rgba(56, 41, 224, 0.6); /* soft shadow below */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  background: hsl(245, 75%, 60%);
+  box-shadow: 0 8px 16px rgba(56, 41, 224, 0.4);
+  transform: translateY(-2px);
+}
+.order-option {
+  text-align: center;
+  color: var(--Gray-600);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.order-option:hover {
+  color: var(--Blue-950);
+}
+
+@media (min-width: 768px) {
+  body {
+    background: url(../assets/pattern-background-desktop.svg) no-repeat top
+        center,
+      var(--Blue-100);
+    background-size: 100% 50%, 100%;
+    padding: 0 auto;
+  }
+  .content-text h2 {
+    font-size: 1.2rem;
+  }
+  .content p {
+    font-size: 1rem;
+  }
+  .pricing-text h4 {
+    font-size: 0.9rem;
+  }
+  .pricing-text p {
+    font-size: 0.8rem;
+  }
+  .subscription-option a {
+    font-size: 0.9rem;
+  }
+  button {
+    font-size: 0.9rem;
+  }
+  .order-option {
+    font-size: 0.7rem;
+  }
+}
