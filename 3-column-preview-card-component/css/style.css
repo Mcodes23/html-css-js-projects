@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend+Deca:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Big+Shoulders:opsz,wght@10..72,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --Gold-500: hsl(31, 77%, 52%);
+  --Cyan-800: hsl(184, 100%, 22%);
+  --Green-950: hsl(179, 100%, 13%);
+  --Transparent-white: hsla(0, 0%, 100%, 0.75);
+  --Gray-100: hsl(0, 0%, 95%);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--Gray-100);
+  font-size: 15px;
+  font-family: "Lexend Deca", sans-serif;
+  font-weight: 400;
+  padding: 2rem 0px;
+}
+
+.main-container {
+  width: 90%;
+  max-width: 950px;
+  display: grid;
+  margin: auto 2rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.card {
+  padding: 3rem;
+}
+
+.card img,
+h1,
+p {
+  padding-bottom: 2rem;
+}
+
+.card img {
+  max-width: 100%;
+  display: block;
+}
+
+.card h1 {
+  color: var(--Gray-100);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-family: "Big Shoulders", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.card p {
+  color: var(--Transparent-white);
+  line-height: 1.5rem;
+}
+
+.card button {
+  text-align: center;
+  padding: 1rem 2rem;
+  border: none;
+  outline: none;
+  border-radius: 30px;
+  letter-spacing: 1px;
+  cursor: pointer;
+}
+.card button:hover {
+  border: 2px solid var(--Gray-100);
+  color: var(--Gray-100);
+  background: transparent;
+  transition: all 1s ease;
+}
+
+.gold {
+  background: var(--Gold-500);
+}
+
+.gold button {
+  color: var(--Gold-500);
+}
+
+.cyan {
+  background: var(--Cyan-800);
+}
+
+.cyan button {
+  color: var(--Cyan-800);
+}
+
+.green {
+  background: var(--Green-950);
+}
+
+.green button {
+  color: var(--Green-950);
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    grid-template-columns: repeat(3, 1fr);
+    margin: auto;
+  }
+  .card {
+    height: auto;
+    min-height: 60vh;
+  }
+  .card button {
+    margin-top: 2rem;
+  }
+}
