@@ -1,0 +1,133 @@
+@import url("https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --blue-600: hsl(185, 75%, 39%);
+  --navy-950: hsl(229, 23%, 23%);
+  --gray-500: hsl(227, 10%, 46%);
+  --gray-100: hsl(225, 10%, 92%);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: url("../assets/bg-pattern-top.svg") no-repeat,
+    url("../assets/bg-pattern-bottom.svg") no-repeat, var(--blue-600);
+  background-position: top -360px left -350px, bottom -330px right -350px;
+  background-size: 600px, 600px, cover;
+  font-family: "Kumbh Sans", sans-serif;
+  font-size: 18px;
+}
+
+.container {
+  background: var(--gray-100);
+  max-width: 375px;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.container img {
+  max-width: 100%;
+  display: block;
+}
+
+.main-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.profile-image {
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+
+.profile-image img {
+  border-radius: 50%;
+  padding: 0.4rem;
+  background: var(--gray-100);
+}
+
+.text-content {
+  padding-top: 5rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.text-content h2 {
+  color: var(--navy-950);
+  font-size: 1.3rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+}
+.text-content h2 span {
+  color: var(--gray-500);
+  font-size: 1.4rem;
+  font-weight: 400;
+}
+
+.text-content p {
+  color: var(--gray-500);
+  font-weight: 400;
+}
+.divider {
+  background: var(--gray-500);
+  height: 0.9px;
+  opacity: 0.3;
+}
+.profile-stats {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0px;
+}
+
+.stats {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.stats h4 {
+  color: var(--navy-950);
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.stats p {
+  color: var(--gray-500);
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 3px;
+}
+
+@media (min-width: 650px) {
+  body {
+    background-position: top -500px left -350px, bottom -500px right -300px;
+    background-size: 1080px, 1000px, cover;
+  }
+  .container {
+    max-width: 450px;
+  }
+}
