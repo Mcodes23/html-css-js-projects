@@ -8,7 +8,7 @@ This is a solution to the [Recipe page challenge on Frontend Mentor](https://www
 
 ### Links
 
-- Live Site URL: https://mcodes23.github.io/html-css-js-projects/order-summary-component/
+- Live Site URL: https://mcodes23.github.io/html-css-js-projects/recipe-page/
 
 ### Built with
 
