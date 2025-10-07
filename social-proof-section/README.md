@@ -14,7 +14,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: https://mcodes23.github.io/html-css-js-projects/product-preview-card-component/
+- Live Site URL: https://mcodes23.github.io/html-css-js-projects/social-proof-section/
 
 ### Built with
 
