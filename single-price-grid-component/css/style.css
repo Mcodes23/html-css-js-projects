@@ -1,0 +1,145 @@
+@import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,200..800;1,200..800&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --Teal-500: hsl(179, 62%, 43%);
+  --Green-400: hsl(71, 73%, 54%);
+  --Teal-100: hsl(204, 43%, 93%);
+  --Gray-500: hsl(218, 22%, 67%);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Teal-100);
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  padding: 2rem;
+}
+
+.main-grid-container {
+  display: grid;
+  border-radius: 12px;
+  max-width: 700px;
+  overflow: hidden;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.grid-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 2rem;
+}
+
+.grid-container.div1 {
+  background-color: white;
+}
+
+.grid-container.div1 h1 {
+  font-size: 1.3rem;
+  color: var(--Teal-500);
+}
+
+.grid-container.div1 h2 {
+  color: var(--Green-400);
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.grid-container.div1 p {
+  color: var(--Gray-500);
+  line-height: 1.6;
+}
+
+.grid-container.div2 {
+  background-color: var(--Teal-500);
+  color: white;
+}
+
+.grid-container.div2 h2 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.pricing {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.pricing h1 {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.pricing h1 span {
+  color: var(--Teal-100);
+  font-size: 1.2rem;
+  font-weight: 400;
+}
+
+button {
+  background-color: var(--Green-400);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+  color: white;
+  font-size: 1rem;
+  font-weight: 400;
+  letter-spacing: 1.6px;
+  border: none;
+  outline: none;
+  border-radius: 6px;
+  padding: 1rem;
+  cursor: pointer;
+}
+button:hover {
+  background-color: hsl(71, 73%, 60%);
+  transform: translateY(-3px);
+  box-shadow: 0 15px 25px rgba(71, 201, 150, 0.3);
+  transition: all 0.25s ease;
+}
+
+.grid-container.div3 {
+  background-color: hsl(179, 47%, 52%);
+}
+
+.grid-container.div3 h2 {
+  color: white;
+  font-size: 1.2rem;
+}
+
+.grid-container.div3 ul {
+  color: var(--Teal-100);
+  font-weight: 300;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  list-style: none;
+}
+
+@media (min-width: 768px) {
+  .main-grid-container {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    grid-template-areas:
+      "div1 div1"
+      "div2 div3";
+  }
+  .grid-container.div1 {
+    grid-area: div1;
+  }
+  .grid-container.div2 {
+    grid-area: div2;
+  }
+  .grid-container.div3 {
+    grid-area: div3;
+  }
+}
