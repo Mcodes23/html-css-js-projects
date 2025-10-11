@@ -1,0 +1,264 @@
+/* ==============================
+   FONTS
+============================== */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@600&family=Open+Sans:wght@400&display=swap");
+
+/* ==============================
+   RESET & ROOT VARIABLES
+============================== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --Purple-700: hsl(257, 40%, 49%);
+  --Magenta-400: hsl(300, 69%, 71%);
+}
+
+/* ==============================
+   BODY
+============================== */
+body {
+  background: var(--Purple-700) url("../images/bg-mobile.svg") no-repeat top
+    center;
+  background-size: contain;
+  font-family: "Open Sans", sans-serif;
+  color: white;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.5;
+}
+
+/* ==============================
+   HEADER
+============================== */
+header {
+  height: 20vh;
+  display: flex;
+  align-items: center;
+  padding-left: 1.5rem;
+}
+
+.logo {
+  width: 160px;
+}
+
+/* ==============================
+   MAIN CONTAINER
+============================== */
+.main-container {
+  display: grid;
+  max-width: 480px;
+  width: 100%;
+  padding: 2rem;
+  margin: 0 auto;
+}
+
+/* ==============================
+   LEFT CONTENT
+============================== */
+.left-content img {
+  max-width: 100%;
+  display: block;
+  margin-bottom: 3rem;
+  height: auto;
+}
+
+/* ==============================
+   RIGHT CONTENT
+============================== */
+.right-content {
+  display: grid;
+  gap: 5rem;
+  text-align: center;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.text-content h1 {
+  color: white;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  line-height: 1.2;
+}
+
+.text-content p {
+  font-weight: 400;
+  font-size: 1rem;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+/* ==============================
+   BUTTON
+============================== */
+button {
+  background-color: white;
+  color: var(--Purple-700);
+  font-size: 1rem;
+  padding: 1rem 5rem;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+  background-color: var(--Magenta-400);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/* ==============================
+   SOCIAL ICONS
+============================== */
+.icons {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.icons i {
+  border: 1px solid white;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.icons i:hover {
+  border-color: var(--Magenta-400);
+  color: var(--Magenta-400);
+  transform: scale(1.1);
+}
+
+/* ==============================
+   RESPONSIVE (TABLET)
+   For screens between 600px and 1024px
+============================== */
+@media (min-width: 600px) and (max-width: 1024px) {
+  body {
+    background: var(--Purple-700) url("../images/bg-desktop.svg") no-repeat top
+      center;
+    background-size: cover;
+  }
+
+  header {
+    height: 15vh;
+    padding: 2rem 3rem;
+  }
+
+  .main-container {
+    max-width: 900px;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    padding: 3rem;
+  }
+
+  .left-content img {
+    max-width: 80%;
+    margin: 0 auto 3rem auto;
+  }
+
+  .right-content {
+    align-items: center;
+    text-align: center;
+    gap: 2.5rem;
+    position: static;
+  }
+
+  .text-content {
+    align-items: center;
+  }
+
+  .text-content h1 {
+    font-size: clamp(1.8rem, 4vw, 2.2rem);
+  }
+
+  .text-content p {
+    max-width: 600px;
+  }
+
+  .icons {
+    justify-content: center;
+    position: static;
+    margin-top: 3rem;
+  }
+}
+
+/* ==============================
+   RESPONSIVE (DESKTOP)
+   For screens ≥1024px
+============================== */
+@media (min-width: 1024px) {
+  body {
+    background: var(--Purple-700) url("../images/bg-desktop.svg") no-repeat top
+      left;
+    background-size: cover;
+    background-attachment: fixed;
+  }
+
+  header {
+    height: 15vh;
+    padding-left: 15%;
+  }
+
+  .main-container {
+    max-width: 1200px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    padding: 4rem;
+  }
+
+  .left-content img {
+    max-width: 580px;
+  }
+
+  .right-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    text-align: start;
+    gap: 3rem;
+    height: 100%;
+    position: relative;
+  }
+
+  .text-content {
+    align-items: flex-start;
+  }
+
+  .text-content p {
+    margin: 0;
+  }
+
+  .icons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 1rem;
+  }
+}
