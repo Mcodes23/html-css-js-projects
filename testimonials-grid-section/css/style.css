@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  /* Purple Shades */
+  --Purple-50: hsl(260, 100%, 95%);
+  --Purple-300: hsl(264, 82%, 80%);
+  --Purple-500: hsl(263, 55%, 52%);
+
+  /* Neutral Shades */
+  --White: hsl(0, 0%, 100%);
+  --Grey-100: hsl(214, 17%, 92%);
+  --Grey-200: hsl(0, 0%, 81%);
+  --Grey-400: hsl(224, 10%, 45%);
+  --Grey-500: hsl(217, 19%, 35%);
+  --Dark-Blue: hsl(219, 29%, 14%);
+  --Black: hsl(0, 0%, 7%);
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background-color: var(--Grey-100);
+  font-family: "Barlow Semi Condensed", sans-serif;
+  font-size: 13px;
+  line-height: 1.4;
+  padding: 4rem 2rem;
+}
+
+.main-container {
+  max-width: 375px;
+  display: grid;
+  gap: 2rem;
+  margin: 0 auto;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  color: var(--White);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 2rem;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.profile img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-details h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.profile-details p {
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+.text-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.text-content h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.text-content p {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.card.purple {
+  background-color: var(--Purple-500);
+}
+
+.card.grey {
+  background-color: var(--Grey-500);
+}
+.card.grey .profile-details p {
+  color: var(--Grey-200);
+}
+.card.white {
+  background-color: var(--White);
+  color: var(--Grey-500);
+}
+.card.white .text-content p {
+  color: var(--Grey-400);
+}
+.card.blue {
+  background-color: var(--Dark-Blue);
+}
+
+.border-purple {
+  border: 3px solid var(--Purple-300);
+}
+
+@media (min-width: 768px) {
+  .main-container {
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .card {
+    padding: 1.5rem;
+  }
+  .card.purple {
+    background-color: var(--Purple-500);
+    background-image: url(../images/bg-pattern-quotation.svg);
+    background-repeat: no-repeat;
+    background-position: 80% 0%;
+    background-size: 110px;
+  }
+  .white2 {
+    grid-column-start: 4;
+    grid-row: 1 / 3;
+  }
+  .grid-col-span-2 {
+    grid-column: span 2;
+  }
+}
