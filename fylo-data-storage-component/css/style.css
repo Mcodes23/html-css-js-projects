@@ -1,0 +1,258 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --Gradient: linear-gradient(to right, hsl(6, 100%, 80%), hsl(335, 100%, 65%));
+  --Blue-200: hsl(243, 100%, 93%);
+  --Grayish-Blue: hsl(229, 7%, 55%);
+  --Blue-850: hsl(228, 56%, 26%);
+  --Blue-950: hsl(229, 57%, 11%);
+}
+
+body {
+  height: 100vh;
+  background: url(../images/bg-mobile.png) no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 14px;
+}
+
+.main-container {
+  display: grid;
+  gap: 1rem;
+  margin: auto;
+  width: 90vw;
+  animation: fadeIn 1s ease forwards;
+}
+
+/* ===== STORAGE FILES CARD ===== */
+.storage-files {
+  background-color: var(--Blue-850);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 2rem;
+  border-radius: 12px 80px 12px 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+.file-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.file-icons img {
+  background-color: var(--Blue-950);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* ===== STORAGE INFO CARD ===== */
+.storage-infor {
+  background-color: var(--Blue-850);
+  color: var(--Blue-200);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 1rem;
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.25);
+}
+
+.storage-infor p {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.storage-infor p span {
+  font-weight: 700;
+}
+
+/* ===== PROGRESS SECTION ===== */
+.progress-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 3rem;
+}
+
+.progress-bar {
+  width: 100%;
+  background-color: var(--Blue-950);
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 2px;
+}
+
+.progress {
+  height: 14px;
+  background: var(--Gradient);
+  width: 70%;
+  border-radius: 12px;
+  transition: width 0.4s ease;
+  position: relative;
+  animation: fadeIn;
+}
+
+/* Small white indicator dot */
+.progress::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  background-color: var(--Blue-200);
+  border-radius: 50%;
+}
+
+.storage-space {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--Blue-200);
+}
+
+/* ===== STORAGE TOOLTIP ===== */
+.storage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--Blue-200);
+  gap: 0.6rem;
+  padding: 1rem;
+  border-radius: 12px;
+  text-align: center;
+  width: 50%;
+  position: absolute;
+  top: 80%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.storage h1 {
+  color: var(--Blue-950);
+  font-weight: 700;
+  font-size: 2rem;
+}
+
+.storage p {
+  color: var(--Grayish-Blue);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+@media (min-width: 600px) and (max-width: 1024px) {
+  body {
+    background: var(--Blue-950) url(../images/bg-desktop.png) no-repeat bottom;
+    background-size: cover;
+    font-size: 15px;
+  }
+
+  .main-container {
+    width: 80vw;
+    gap: 1.5rem;
+  }
+
+  .storage-files {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 20px;
+    padding: 2rem 2.5rem;
+  }
+
+  .file-icons img {
+    padding: 0.8rem;
+  }
+
+  .storage-infor {
+    padding: 2.5rem;
+    gap: 1.2rem;
+  }
+
+  .progress-section {
+    margin-bottom: 2rem;
+  }
+
+  .storage {
+    width: 40%;
+    top: 85%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 1rem 0.8rem;
+  }
+
+  .storage h1 {
+    font-size: 1.8rem;
+  }
+
+  .storage p {
+    font-size: 0.9rem;
+  }
+
+  .extension {
+    display: none; /* optional: hide triangle tooltip on tablet for simplicity */
+  }
+}
+/* ===== DESKTOP VIEW ===== */
+@media (min-width: 1200px) {
+  body {
+    background: var(--Blue-950) url(../images/bg-desktop.png) no-repeat bottom;
+    background-size: contain;
+    font-size: 16px;
+  }
+
+  .main-container {
+    grid-template-columns: 1fr 2fr;
+    gap: 2rem;
+    width: 60vw;
+  }
+
+  .storage {
+    width: 30%;
+    position: absolute;
+    top: -35px;
+    right: 2rem;
+    left: auto;
+    transform: none;
+  }
+
+  .extension {
+    position: absolute;
+    top: 25px;
+    right: 32px;
+    width: 10px;
+    height: 10px;
+    border-left: 15px solid transparent;
+    border-right: 0px solid transparent;
+    border-top: 15px solid var(--Blue-200);
+  }
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
